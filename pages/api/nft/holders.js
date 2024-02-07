@@ -65,5 +65,6 @@ export default async function handler(req, res) {
             final.push(element);
         }
     }
+    res.setHeader('Cache-Control', 's-maxage=86400');
     res.status(200).json(final)
 }
