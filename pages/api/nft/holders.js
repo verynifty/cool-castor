@@ -34,8 +34,11 @@ export default async function handler(req, res) {
         if (i > 320) {
             promises.push(sdk.userBulkByAddress({addresses: addresses, api_key: process.env.NEYNAR_KEY}));
             i = 0;
-            addresses = 0;
+            addresses = "";
         }
+    }
+    if (addresses.length > 0) {
+        promises.push(sdk.userBulkByAddress({addresses: addresses, api_key: process.env.NEYNAR_KEY}));
     }
 
     const users = await Promise.allSettled(promises);
