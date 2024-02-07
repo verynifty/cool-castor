@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "../app/globals.css";
 import Head from 'next/head'
+import Script from 'next/script';
 
 import { default as React, Suspense, useEffect, useState } from 'react';
 
@@ -22,7 +23,6 @@ export default function MyApp({ Component, pageProps }) {
                 <meta name="twitter:site" content="https://castor.musedao.io" />
                 <meta property="og:title" content="Castor: Farcaster tools" />
                 <meta property="og:description" content="Tools to enhance your Farcaster experience" />
-
             </Head>
             <div className={inter.className}>
                 <Header />
@@ -30,6 +30,15 @@ export default function MyApp({ Component, pageProps }) {
                     <Component {...pageProps} />
                 </Suspense>
             </div>
+            <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
+            <noscript>
+                {/* eslint-disable @next/next/no-img-element */}
+                <img
+                    src="https://queue.simpleanalyticscdn.com/noscript.gif"
+                    alt=""
+                    referrerPolicy="no-referrer-when-downgrade"
+                />
+            </noscript>
         </div>
     );
 }
