@@ -9,17 +9,26 @@ export default function NFTHolders({ props }) {
 
     const [users, setUsers] = useState([]);
     const [address, setAddress] = useState('');
+    const [collection, setCollection] = useState({
+
+    });
     const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
 
         async function getNFTData(address) {
-            console.log(router)
+            const c = await fetch(
+                `/api/nft/collection?address=${address}`
+            );
+            let collect = await c.json();
+            setCollection(collect);
+            console.log(collection);
             const res = await fetch(
                 `/api/nft/holders?collection=${address}`
             );
             const data = await res.json();
+            
             console.log(data);
             setUsers(data);
             console.log(users);
@@ -48,7 +57,7 @@ export default function NFTHolders({ props }) {
     }
     return (
         <div>
-            <center className='text-3xl font-bold tracking-tight my-10'>Farcaster users for collection {address}</center>
+            <center className='text-3xl font-bold tracking-tight my-10'>Farcaster users for collection {collection.name}</center>
 
             <div className="overflow-x-auto">
                 <table className="table">

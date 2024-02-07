@@ -15,11 +15,9 @@ const client = new NeynarAPIClient(process.env.NEYNAR_KEY);
 export default async function handler(req, res) {
     // get query parameter of nft collection
     const { collection } = req.query;
-    console.log(collection), req, req.query
     let owners = (await alchemy.nft.getOwnersForContract(collection, {
         withTokenBalances: true
     })).owners;
-    console.log(owners);
     let promises = [];
     let i = 0;
     let addresses = "";
@@ -40,9 +38,7 @@ export default async function handler(req, res) {
         }
     }
 
-    console.log(promises)
     const users = await Promise.allSettled(promises);
-
     let counter = 0;
     users.forEach(res => {
         if (res.status == 'fulfilled') {
