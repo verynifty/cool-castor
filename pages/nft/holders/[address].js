@@ -9,7 +9,8 @@ export default function NFTHolders({ props }) {
 
     const [users, setUsers] = useState([]);
     const [address, setAddress] = useState('');
-    console.log(props);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
 
@@ -22,6 +23,7 @@ export default function NFTHolders({ props }) {
             console.log(data);
             setUsers(data);
             console.log(users);
+            setIsLoading(false);
         }
 
         if (router.isReady) {
@@ -36,6 +38,13 @@ export default function NFTHolders({ props }) {
         let result = users.filter(user => user.profile != null);
         console.log(result)
         return result;
+    }
+    if (isLoading) {
+        return <div><center className='mt-40'>
+            <span className="loading loading-bars loading-lg"></span>
+            <div>Loading...</div>
+        </center>
+        </div>
     }
     return (
         <div>
@@ -57,7 +66,7 @@ export default function NFTHolders({ props }) {
                             <tr>
                                 <td>
                                     <div className="flex items-center gap-3">
-                                        <a target='_blank' href={`https://warpcast.com/${user.profile.username}`}  className="avatar">
+                                        <a target='_blank' href={`https://warpcast.com/${user.profile.username}`} className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
                                                 <img src={user.profile.pfp_url} alt="Avatar Tailwind CSS Component" />
                                             </div>
