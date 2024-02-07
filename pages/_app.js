@@ -19,7 +19,7 @@ export default function MyApp({ Component, pageProps }) {
                 <description>Tools to enhance your Farcaster experience</description>
                 <meta property="og:image" content="https://castor.musedao.io/opengraph-image.png" />
                 <meta name="twitter:image" content="https://castor.musedao.io/twitter-image.pn" />
-                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:site" content="https://castor.musedao.io" />
                 <meta property="og:title" content="Castor: Farcaster tools" />
                 <meta property="og:description" content="Tools to enhance your Farcaster experience" />
