@@ -24,15 +24,19 @@ export default function NFTHolders({ }) {
             <div className="hero min-h-96 bg-base-200">
                 <div className="hero-content text-center">
                     <div>
-                        <h1 className="text-5xl font-bold">Make friends on Farcaster</h1>
+                        <h1 className="text-5xl font-bold text-primary">Find friends on Farcaster</h1>
                         <p className="py-6">Find people to follow based on the NFTs they hold!</p>
                     </div>
                 </div>
             </div>
-            <center className='text-3xl font-bold tracking-tight my-10'>Type NFT contract address</center>
 
-
-            <center className='text-3xl font-bold tracking-tight my-10'>Or pick a popular collection</center>
+            <center className='text-3xl text-accent font-bold tracking-tight my-10'>Type an NFT contract address</center>
+            <center> <div className="join">
+                <input className="input input-lg input-bordered join-item" placeholder="0x3432..." />
+                <button className="btn btn-lg btn-primary join-item rounded-r-full">Search</button>
+            </div></center>
+            <div className="divider divider-accent mt-20">OR</div>
+            <center className='text-3xl  text-accent font-bold tracking-tight mt-20 mb-10'>pick a popular collection</center>
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
                 {collections.map((collection) => (
                     <a href={`/nft/holders/${collection.addresses[0].address}`} className='col-span-1 flex flex-col '>
