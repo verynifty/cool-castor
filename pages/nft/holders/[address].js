@@ -23,12 +23,12 @@ export default function NFTHolders({ props }) {
             );
             let collect = await c.json();
             setCollection(collect);
-            console.log(collection);
+            console.log(collect);
             const res = await fetch(
                 `/api/nft/holders?collection=${address}`
             );
             const data = await res.json();
-            
+
             console.log(data);
             setUsers(data);
             console.log(users);
@@ -57,8 +57,16 @@ export default function NFTHolders({ props }) {
     }
     return (
         <div>
-            <center className='text-3xl font-bold tracking-tight my-10'>Farcaster users for collection {collection.name}</center>
-
+            <div>
+            </div>
+            <div className="hero " style={{ backgroundImage: `url(${collection.banner_image_url})` }}>
+                <div className="hero-overlay bg-opacity-90"></div>
+                <div className="hero-content text-center text-neutral-content">
+                    <div className="max-w-md">
+                    <center className='text-3xl text-accent font-bold tracking-tight my-10'>Farcaster holders of {collection.name}</center>
+                    </div>
+                </div>
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

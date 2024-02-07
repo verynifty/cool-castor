@@ -30,7 +30,7 @@ export default function NFTHolders({ }) {
                 <div className="hero-content text-center">
                     <div>
                         <h1 className="text-5xl font-bold text-primary">Find friends on Farcaster</h1>
-                        <p className="py-6">Find people to follow based on the NFTs they hold!</p>
+                        <p className="py-6">Find who to follow based on the NFTs they hold!</p>
                     </div>
                 </div>
             </div>

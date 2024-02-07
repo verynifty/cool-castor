@@ -25,7 +25,7 @@ export default function Home() {
                 <a href="/" className="btn btn-ghost text-xl">Cool Castor 🦫</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ConnectButton />
+               {/* <ConnectButton /> */}
 
                 {/*}
 
