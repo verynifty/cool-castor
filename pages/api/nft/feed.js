@@ -6,7 +6,7 @@ const settings = {
 
 const alchemy = new Alchemy(settings);
 
-import { NeynarAPIClient } from "@neynar/nodejs-sdk";
+import { NeynarAPIClient, FeedType, FilterType } from "@neynar/nodejs-sdk";
 const sdk = require('api')('@neynar/v2.0#7zw16ls6rtlto');
 
 
@@ -58,15 +58,12 @@ export default async function handler(req, res) {
         }
         counter++;
     });
-   const feedResult = await  sdk.feed({
-     feed_type: 'filter',
-     filter_type: 'fids',
-     fids: fids,
-     with_recasts: 'true',
-     with_replies: 'false',
-     limit: '25',
-     api_key: process.env.NEYNAR_KEY
-   })
+    console.log("GETFEED")
+    const feed = await client.fetchFeed(FeedType.Filter, {
+        filterType: FilterType.Fids,
+        fids
+      });
+      console.log(feed)
     res.setHeader('Cache-Control', 's-maxage=86400');
-    res.status(200).json(feedResult)
+    res.status(200).json(feed)
 }

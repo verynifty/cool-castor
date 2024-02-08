@@ -9,7 +9,7 @@ export default function NFTHolders({ props }) {
 
     const router = useRouter()
 
-    const [users, setUsers] = useState([]);
+    const [feed, setFeed] = useState([]);
     const [address, setAddress] = useState('');
     const [collection, setCollection] = useState({
 
@@ -26,13 +26,13 @@ export default function NFTHolders({ props }) {
             setCollection(collect);
             console.log(collect);
             const res = await fetch(
-                `/api/nft/holders?collection=${address}`
+                `/api/nft/feed?collection=${address}`
             );
             const data = await res.json();
 
             console.log(data);
-            setUsers(data);
-            console.log(users);
+            setFeed(data);
+            console.log(data)
             setIsLoading(false);
         }
 
@@ -69,6 +69,23 @@ export default function NFTHolders({ props }) {
                 <a role="tab" href={`/nft/holders/${address}`} className="tab ">Holders</a>
                 <a role="tab" className="tab tab-active">Feed</a>
             </div>
+            {feed.casts.map((cast) => (
+                <div className="card w-96 mt-5 bg-neutral shadow-xl">
+                    {cast.embeds.length > 0 && cast.embeds[0].url != null && (cast.embeds[0].url.endsWith("jpg") || cast.embeds[0].url.endsWith("gif") || cast.embeds[0].url.endsWith("png")) ? <figure><img src={cast.embeds[0].url}  /></figure>
+                        : <div></div>}
+                    <div className="card-body">
+                        <p className="text-bold">
+                            {cast.text}
+                        </p>
+                        <p>{cast.author.display_name} - @{cast.author.username}</p>
+                        <div className="card-actions justify-end">
+                            <div className="badge badge-outline">{cast.reactions.likes.length} Likes</div>
+                            <div className="badge badge-outline">{cast.reactions.recasts.length} Likes</div>
+                        </div>
+                    </div>
+                </div>
+
+            ))}
 
 
         </div>

@@ -125,7 +125,7 @@ export default function NFTHolders({ props }) {
             </div>
             <div role="tablist" className="tabs tabs-bordered tabs-lg">
                 <a role="tab" className="tab tab-active">Holders</a>
-                <a role="tab" href={`/nft/stream/${address}`} className="tab">Feed</a>
+                <a role="tab" href={`/nft/feed/${address}`} className="tab">Feed</a>
             </div>
             <center className='my-5'>
                 <button className="btn btn-primary" onClick={followAll}>Follow All ({getUsers().length})</button>
