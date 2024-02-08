@@ -2,6 +2,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+## Environment variables
+
+.env
+```
+ALCHEMY_KEY=
+NEYNAR_KEY=
+OPENSEA_KEY=
+```
+
+## Installation and running
+
 First, run the development server:
 
 ```bash
