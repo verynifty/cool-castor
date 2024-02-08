@@ -14,6 +14,20 @@ export default function NFTHolders({ props }) {
     });
     const [isLoading, setIsLoading] = useState(true);
 
+    const followAll = async () => {
+        if (!localStorage.getItem('connected')) {
+            alert('Please connect your account first.');
+            return
+        }
+        let addresses = getUsers().join(',');
+        let signer = localStorage.getItem('signer');
+        const res = await fetch(
+            `/api/user/follow?addresses=${addresses}&signer=${signer}`
+        );
+        const data = await res.json();
+        console.log(data);
+
+    }
 
     useEffect(() => {
 
@@ -64,8 +78,13 @@ export default function NFTHolders({ props }) {
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
                     <center className='text-3xl text-accent font-bold tracking-tight my-10'>Farcaster holders of {collection.name}</center>
+                    <center>
+                    <button className="btn" onClick={followAll}>Follow All ({getUsers().length})</button>
+                    </center>
                     </div>
                 </div>
+            </div>
+            <div>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
