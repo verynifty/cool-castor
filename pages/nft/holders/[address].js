@@ -99,7 +99,7 @@ export default function NFTHolders({ props }) {
         , [router.isReady]);
 
     function getUsers() {
-        let result = users.filter(user => user.profile != null);
+        let result = users.filter(user => user.profile != null && user.profile.username != null);
         console.log(result)
         return result;
     }
