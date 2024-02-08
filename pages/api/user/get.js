@@ -1,11 +1,3 @@
-const { Network, Alchemy } = require('alchemy-sdk');
-const settings = {
-    apiKey: process.env.ALCHEMY_KEY, // Replace with your Alchemy API Key.
-    network: Network.ETH_MAINNET, // Replace with your network.
-};
-
-const alchemy = new Alchemy(settings);
-
 import { NeynarAPIClient } from "@neynar/nodejs-sdk";
 const sdk = require('api')('@neynar/v2.0#7zw16ls6rtlto');
 

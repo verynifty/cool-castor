@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify';
+
 
 export default function NFTHolders({ props }) {
 
@@ -19,13 +21,30 @@ export default function NFTHolders({ props }) {
             alert('Please connect your account first.');
             return
         }
-        let addresses = getUsers().join(',');
+        let fids = getUsers().map(user => user.profile.fid).join(',');
         let signer = localStorage.getItem('signer');
         const res = await fetch(
-            `/api/user/follow?addresses=${addresses}&signer=${signer}`
+            `/api/user/follow?fids=${fids}&signer=${signer}`
         );
         const data = await res.json();
         console.log(data);
+        toast.success('Followed all users');
+
+    }
+
+    const unfollowAll = async () => {
+        if (!localStorage.getItem('connected')) {
+            alert('Please connect your account first.');
+            return
+        }
+        let fids = getUsers().map(user => user.profile.fid).join(',');
+        let signer = localStorage.getItem('signer');
+        const res = await fetch(
+            `/api/user/follow?fids=${fids}&signer=${signer}`
+        );
+        const data = await res.json();
+        console.log(data);
+        toast.success('Unfollowed all users');
 
     }
 
@@ -79,7 +98,9 @@ export default function NFTHolders({ props }) {
                     <div className="max-w-md">
                     <center className='text-3xl text-accent font-bold tracking-tight my-10'>Farcaster holders of {collection.name}</center>
                     <center>
-                    <button className="btn" onClick={followAll}>Follow All ({getUsers().length})</button>
+                    <button className="btn btn-primary" onClick={followAll}>Follow All ({getUsers().length})</button>
+                    <button className="btn ml-2" onClick={unfollowAll}>Unfollow all</button>
+
                     </center>
                     </div>
                 </div>

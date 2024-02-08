@@ -9,7 +9,8 @@ import Header from "../components/navigation/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function MyApp({ Component, pageProps }) {
 
@@ -39,6 +40,7 @@ export default function MyApp({ Component, pageProps }) {
                     referrerPolicy="no-referrer-when-downgrade"
                 />
             </noscript>
+            <ToastContainer />
         </div>
     );
 }
