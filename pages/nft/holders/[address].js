@@ -29,6 +29,9 @@ export default function NFTHolders({ props }) {
         const data = await res.json();
         console.log(data);
         toast.success('Followed all users');
+        if (window && window.sa_event) return window.sa_event("followed", {
+            number: getUsers().length
+        });
 
     }
 
@@ -45,7 +48,9 @@ export default function NFTHolders({ props }) {
         const data = await res.json();
         console.log(data);
         toast.success('Unfollowed all users');
-
+        if (window && window.sa_event) return window.sa_event("unfollowed", {
+            number: getUsers().length
+        });
     }
 
     const follow = async (fid) => {
@@ -60,6 +65,9 @@ export default function NFTHolders({ props }) {
         const data = await res.json();
         console.log(data);
         toast.success('Followed');
+        if (window && window.sa_event) return window.sa_event("followed", {
+            number: 1
+        });
     }
 
     useEffect(() => {

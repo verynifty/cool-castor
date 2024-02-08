@@ -19,6 +19,10 @@ export default function Home() {
             localStorage.setItem("connected", true);
 
             setIsSignedIn(true);
+            if (window && window.sa_event) return window.sa_event("signedup", {
+                fid: user.fid,
+                username: user.username
+            });
             location.reload();
         };
 
