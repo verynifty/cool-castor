@@ -25,7 +25,7 @@ export default function Home() {
                 <a href="/" className="btn btn-ghost text-xl">Cool Castor 🦫</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-               {/* <ConnectButton /> */}
+                {/*  */}
 
                 {/*}
 
@@ -46,13 +46,14 @@ export default function Home() {
             </div>
 
             <div className="navbar-end">
+                <ConnectButton />
                 <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>About</button>
             </div>
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">About</h3>
                     <p className="py-2">
-                        A project by <a className='underline'  target='_blank' href="https://warpcast.com/grands-marquis">Grands Marquis</a> and the Muse DAO.
+                        A project by <a className='underline' target='_blank' href="https://warpcast.com/grands-marquis">Grands Marquis</a> and the Muse DAO.
                     </p>
                     <p className="py-2">
                         it's <a className='underline' target='_blank' href="https://github.com/verynifty/cool-castor">Open Source on Github</a> and powered by <a className='underline' target='_blank' href="https://neynar.com/">Neynar</a>, Opensea and Alchemy.

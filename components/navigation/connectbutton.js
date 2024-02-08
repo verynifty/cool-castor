@@ -15,11 +15,16 @@ export default function Home() {
                 `/api/user/get?fid=${data.fid}`
             );
             const user = await res.json();
-            localStorage.setItem("user", data.signer_uuid);
+            localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("connected", true);
 
             setIsSignedIn(true);
+            location.reload();
         };
+
+        if (localStorage.getItem("connected") == "true") {
+            setIsSignedIn(true);
+        }
 
         // Identify or create the script element
         let script = document.getElementById(
@@ -39,21 +44,14 @@ export default function Home() {
 
         document.body.appendChild(script);
 
-        return () => {
-            // Remove the script from the body
-            if (script) {
-                document.body.removeChild(script);
-            }
 
-            // Remove the button if it exists
-            let button = document.getElementById("siwn-button");
-            if (button && button.parentElement) {
-                button.parentElement.removeChild(button);
-            }
-        };
+        
     }, [
     ]);
 
+    if (isSignedIn)  {
+        return <div></div>
+    }
 
     return (
         <div>
