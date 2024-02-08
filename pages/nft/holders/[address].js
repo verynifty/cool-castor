@@ -118,14 +118,19 @@ export default function NFTHolders({ props }) {
                 <div className="hero-overlay bg-opacity-90"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
-                    <center className='text-3xl text-accent font-bold tracking-tight my-10'>Farcaster holders of {collection.name}</center>
-                    <center>
-                    <button className="btn btn-primary" onClick={followAll}>Follow All ({getUsers().length})</button>
-                    <button className="btn ml-2" onClick={unfollowAll}>Unfollow all</button>
-                    </center>
+                        <center className='text-3xl text-accent font-bold tracking-tight my-10'>Farcaster holders of {collection.name}</center>
+
                     </div>
                 </div>
             </div>
+            <div role="tablist" className="tabs tabs-bordered tabs-lg">
+                <a role="tab" className="tab tab-active">Holders</a>
+                <a role="tab" href={`/nft/stream/${address}`} className="tab">Feed</a>
+            </div>
+            <center className='my-5'>
+                <button className="btn btn-primary" onClick={followAll}>Follow All ({getUsers().length})</button>
+                <button className="btn ml-2" onClick={unfollowAll}>Unfollow all</button>
+            </center>
             <div>
             </div>
             <div className="overflow-x-auto">
@@ -159,7 +164,7 @@ export default function NFTHolders({ props }) {
                                     {user.tokenBalances.length} Nfts
                                 </td>
                                 <th>
-                                <button className="btn btn-primary" onClick={() => follow(user.profile.fid)}>Follow</button>
+                                    <button className="btn btn-primary" onClick={() => follow(user.profile.fid)}>Follow</button>
                                     <a target='_blank' href={`https://warpcast.com/${user.profile.username}`} className="btn ml-2">See on warp cast</a>
                                 </th>
                             </tr>
