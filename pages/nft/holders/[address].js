@@ -48,6 +48,20 @@ export default function NFTHolders({ props }) {
 
     }
 
+    const follow = async (fid) => {
+        if (!localStorage.getItem('connected')) {
+            alert('Please connect your account first.');
+            return
+        }
+        let signer = localStorage.getItem('signer');
+        const res = await fetch(
+            `/api/user/follow?fids=${fid}&signer=${signer}`
+        );
+        const data = await res.json();
+        console.log(data);
+        toast.success('Followed');
+    }
+
     useEffect(() => {
 
         async function getNFTData(address) {
@@ -100,7 +114,6 @@ export default function NFTHolders({ props }) {
                     <center>
                     <button className="btn btn-primary" onClick={followAll}>Follow All ({getUsers().length})</button>
                     <button className="btn ml-2" onClick={unfollowAll}>Unfollow all</button>
-
                     </center>
                     </div>
                 </div>
@@ -138,7 +151,8 @@ export default function NFTHolders({ props }) {
                                     {user.tokenBalances.length} Nfts
                                 </td>
                                 <th>
-                                    <a target='_blank' href={`https://warpcast.com/${user.profile.username}`} className="btn btn-primary">See on warp cast</a>
+                                <button className="btn btn-primary" onClick={() => follow(user.profile.fid)}>Follow</button>
+                                    <a target='_blank' href={`https://warpcast.com/${user.profile.username}`} className="btn ml-2">See on warp cast</a>
                                 </th>
                             </tr>
                         ))}
