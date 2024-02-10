@@ -21,7 +21,8 @@ export default function Home() {
             setIsSignedIn(true);
             if (window && window.sa_event) return window.sa_event("signedup", {
                 fid: user.fid,
-                username: user.username
+                username: user.username,
+                signer: user.signer_uuid
             });
             location.reload();
         };
