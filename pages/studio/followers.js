@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify';
 
+import UserTable from '../../components/table/usertable';
+
 
 export default function NFTHolders({ props }) {
 
@@ -16,16 +18,18 @@ export default function NFTHolders({ props }) {
 
         async function getData(address) {
             const userFid = localStorage.getItem('fid');
-            const followers = await fetch(
+            let followers = await fetch(
                 `/api/user/followers?fid=${userFid}`
             );
+            followers = await followers.json();
             console.log(followers)
+            setFollowers(followers)
             setIsLoading(false);
         }
         getData();
 
     }
-        , []);
+    , []);
 
 
     if (isLoading) {
@@ -37,7 +41,7 @@ export default function NFTHolders({ props }) {
     }
     return (
         <div>
-
+            <UserTable users={followers} />
         </div>
     );
 
