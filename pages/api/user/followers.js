@@ -9,6 +9,6 @@ export default async function handler(req, res) {
     const { fid } = req.query;
     const followers = [];
     let cursor = null;
-    let r = await sdk.followers({ fid: fid, cursor: cursor, limit: 120, api_key: process.env.NEYNAR_KEY });
+    let r = await sdk.followers({ fid: fid, cursor: cursor, limit: 40, api_key: process.env.NEYNAR_KEY });
     res.status(200).json(r.data.result.users);
 }

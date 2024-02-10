@@ -1,8 +1,55 @@
-import DataTable from 'react-data-table-component';
+import DataTable, { createTheme } from 'react-data-table-component';
+import TimeAgo from 'timeago-react'; // var TimeAgo = require('timeago-react');
 
 import { useEffect, useState } from "react";
 
 export default function Home(props) {
+
+    const paginationComponentOptions = {
+        selectAllRowsItem: true,
+        rowsPerPageText: 'Users per page',
+
+    };
+
+    const castorTheme = createTheme(
+        'castor',
+        {
+            text: {
+                primary: '#FFFFFF',
+                secondary: 'rgba(255, 255, 255, 0.7)',
+                disabled: 'rgba(0,0,0,.12)',
+            },
+            background: {
+                default: '#1D232A',
+            },
+            context: {
+                background: '#E91E63',
+                text: '#FFFFFF',
+            },
+            divider: {
+                default: 'rgba(81, 81, 81, 1)',
+            },
+            button: {
+                default: '#FFFFFF',
+                focus: 'rgba(255, 255, 255, .54)',
+                hover: 'rgba(255, 255, 255, .12)',
+                disabled: 'rgba(255, 255, 255, .18)',
+            },
+            selected: {
+                default: 'rgba(0, 0, 0, .7)',
+                text: '#FFFFFF',
+            },
+            highlightOnHover: {
+                default: 'rgba(0, 0, 0, .7)',
+                text: '#FFFFFF',
+            },
+            striped: {
+                default: 'rgba(0, 0, 0, .87)',
+                text: '#FFFFFF',
+            },
+        },
+        'dark',
+    );
 
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [maxFollowers, setMaxFollowers] = useState(0);
@@ -29,6 +76,9 @@ export default function Home(props) {
             name: 'Since',
             selector: row => row.timestamp,
             sortable: true,
+            cell: row => <div>
+                <TimeAgo datetime={row.timestamp} />
+            </div>
          
         },
         {
@@ -79,8 +129,10 @@ export default function Home(props) {
     return (
         <div>
             <DataTable
+            theme="castor"
                 columns={columns}
                 data={props.users}
+                pagination paginationComponentOptions={paginationComponentOptions}
             />
         </div>
     );
